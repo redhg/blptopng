@@ -56,19 +56,19 @@ endif()
 # BLPConverter executable
 
 if (WITH_LIBRARY)
-    add_executable(BLPConverter ${EXECUTABLE_SRCS})
-    target_link_libraries(BLPConverter blp)
+    add_executable(blptopng ${EXECUTABLE_SRCS})
+    target_link_libraries(blptopng blp)
 
     if (APPLE)
-        set_target_properties(BLPConverter PROPERTIES LINK_FLAGS "-Wl,-rpath,@loader_path/.")
+        set_target_properties(blptopng PROPERTIES LINK_FLAGS "-Wl,-rpath,@loader_path/.")
     else()
-        set_target_properties(BLPConverter PROPERTIES INSTALL_RPATH ".")
+        set_target_properties(blptopng PROPERTIES INSTALL_RPATH ".")
     endif()
 else()
-    add_executable(BLPConverter ${EXECUTABLE_SRCS} ${LIBRARY_SRCS} ${LIBRARY_HEADERS})
-    target_link_libraries(BLPConverter freeimage squish)
+    add_executable(blptopng ${EXECUTABLE_SRCS} ${LIBRARY_SRCS} ${LIBRARY_HEADERS})
+    target_link_libraries(blptopng freeimage squish)
 endif()
 
-set_target_properties(BLPConverter PROPERTIES COMPILE_DEFINITIONS "FREEIMAGE_LIB")
+set_target_properties(blptopng PROPERTIES COMPILE_DEFINITIONS "FREEIMAGE_LIB")
 
-install(TARGETS BLPConverter RUNTIME DESTINATION bin)
+install(TARGETS blptopng RUNTIME DESTINATION bin)
